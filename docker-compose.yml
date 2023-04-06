@@ -2,9 +2,9 @@
 
   services:
 
-    db:
+    sql-db:
       image: postgres:15.1
-      container_name: best_travel
+      container_name: best-travel
       restart: always
       volumes:
         - ./db/sql/create_schema.sql:/docker-entrypoint-initdb.d/create_schema.sql
@@ -15,6 +15,16 @@
         - POSTGRES_PASSWORD=root
       ports:
         - "5432:5432"
+
+    cache-db:
+      depends_on:
+        - sql-db
+      image: redis:6.2-alpine
+      container_name: best-travel-cache
+      restart: always
+      ports:
+        - "6379:6379"
+      command: redis-server --loglevel warning --requirepass root
 
     # ---- Docker command ----
     

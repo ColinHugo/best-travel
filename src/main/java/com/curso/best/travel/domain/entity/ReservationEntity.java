@@ -32,18 +32,18 @@ public class ReservationEntity {
 
     private BigDecimal price;
 
-    @ManyToOne
+    @ManyToOne( fetch = FetchType.LAZY )
     @JoinColumn( name = "hotel_id" )
     private HotelEntity hotel;
 
-    @ManyToOne
+    @ManyToOne( fetch = FetchType.LAZY )
     @JoinColumn(
             name = "tour_id",
             nullable = true
     )
     private TourEntity tour;
 
-    @ManyToOne
+    @ManyToOne( fetch = FetchType.LAZY )
     @JoinColumn( name = "customer_id" )
     private CustomerEntity customer;
 }

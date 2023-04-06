@@ -1,22 +1,13 @@
 package com.curso.best.travel;
 
-import com.curso.best.travel.domain.entity.ReservationEntity;
-import com.curso.best.travel.domain.entity.TicketEntity;
-import com.curso.best.travel.domain.entity.TourEntity;
 import com.curso.best.travel.domain.repositories.*;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.UUID;
-
 @SpringBootApplication
 @Slf4j
-public class BestTravelApplication implements CommandLineRunner {
+public class BestTravelApplication {
 
 	private final IHotelRepository hotelRepository;
 	private final IFlyRepository flyRepository;
@@ -45,8 +36,8 @@ public class BestTravelApplication implements CommandLineRunner {
 		SpringApplication.run(BestTravelApplication.class, args);
 	}
 
-	@Override
-	public void run(String... args) throws Exception {
+	// @Override
+	// public void run(String... args) throws Exception {
 
 		/* var fly = flyRepository.findById( 15L ).get();
 		var hotel = hotelRepository.findById( 7L ).get();
@@ -85,7 +76,7 @@ public class BestTravelApplication implements CommandLineRunner {
 		/* var hotel = hotelRepository.findByReservationId( UUID.fromString( "52345678-1234-5678-1234-567812345678" ) );
 		System.out.println("hotel = " + hotel); */
 
-		var customer = customerRepository.findById( "GOTW771012HMRGR087" ).orElseThrow();
+		/* var customer = customerRepository.findById( "GOTW771012HMRGR087" ).orElseThrow();
 		log.info( "Client name: " + customer.getFullName() );
 
 		var fly = flyRepository.findById( 11L ).orElseThrow();
@@ -102,8 +93,8 @@ public class BestTravelApplication implements CommandLineRunner {
 		var ticket = TicketEntity.builder()
 				.id( UUID.randomUUID() )
 				.price( fly.getPrice().multiply( BigDecimal.TEN ) )
-				.arrivalDate( LocalDate.now() )
-				.departureDate( LocalDate.now() )
+				.arrivalDate( LocalDateTime.now() )
+				.departureDate( LocalDateTime.now() )
 				.purchaseDate( LocalDate.now() )
 				.customer( customer )
 				.tour( tour )
@@ -136,5 +127,5 @@ public class BestTravelApplication implements CommandLineRunner {
 
 		this.tourRepository.deleteById( tourSaved.getId() );
 
-	}
+	} */
 }
